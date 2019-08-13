@@ -1,0 +1,25 @@
+{
+  "name": "my-datatable-scraper",
+  "version": "1.0.0",
+  "description": "A simple table data web scraper built for a code challenge",
+  "main": "dataScraper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikijiandani/my-datatable-scraper.git"
+  },
+  "author": "Niki Jiandani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikijiandani/my-datatable-scraper/issues"
+  },
+  "homepage": "https://github.com/nikijiandani/my-datatable-scraper#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "d3-dsv": "^1.1.1",
+    "nightmare": "^3.0.2",
+    "puppeteer": "^1.19.0"
+  }
+}
