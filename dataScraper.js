@@ -18,16 +18,24 @@ const getData = async myInput => {
     console.error(e);
   }
   try {
-    const result = await nightmare
-      .wait('.ellip')
+    const searchResults = await nightmare
+      .wait('.rc .r a')
+      .click('.rc .r a')
+  } catch(e) {
+    console.error(e);
+    return undefined;
+  }
+  try {
+    const table = await nightmare
+      .wait('#example')
       .evaluate(() => {
-        return [...document.querySelectorAll('.ellip')]
-          .map(el => el.parentNode.parentNode.attributes[0].value)
+        return [...document.querySelectorAll('#example')[0].children[1].children]
+          .map(el => el.innerText)
       })
       .end();
-
-    // console.log('This is the result', result);
-    return { ...result };
+  
+  console.log(table);
+  return { ...table };
   } catch(e) {
     console.error(e);
     return undefined;
