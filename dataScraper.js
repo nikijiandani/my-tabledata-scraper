@@ -2,8 +2,7 @@ const { csvFormat } = require('d3-dsv');
 const Nightmare = require('nightmare');
 const { writeFileSync } = require('fs');
 
-//get search input from command line args
-const mySearch = process.argv.slice(2);
+const mySearch = "datatables";
 
 const START = 'https://www.google.com/';
 
@@ -56,7 +55,7 @@ const getData = async myInput => {
   }
 }
 
-getData(mySearch[0])
+getData(mySearch)
   .then(data => {
     const csvData = csvFormat(data.filter(i => i));
     writeFileSync('./output.csv', csvData, { encoding: 'utf8' });
