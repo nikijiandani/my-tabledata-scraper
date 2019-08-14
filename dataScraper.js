@@ -1,11 +1,14 @@
-// const { csvFormat } = require('d3-dsv');
+const { csvFormat } = require('d3-dsv');
 const Nightmare = require('nightmare');
-// const { readFileSync, writeFileSync } = require('fs');
+const { writeFileSync } = require('fs');
+
 //get search input from command line args
 const mySearch = process.argv.slice(2);
+
 const START = 'https://www.google.com/';
+
 const getData = async myInput => {
-  console.log(`Searching Google for ${myInput}`);
+  console.log(`Searching Google for ${myInput}...`);
   const nightmare = new Nightmare({ show: true });
 
   //Go to search page
@@ -17,25 +20,36 @@ const getData = async myInput => {
   } catch(e) {
     console.error(e);
   }
+  
+  //click on the first search result link
   try {
-    const searchResults = await nightmare
+    await nightmare
       .wait('.rc .r a')
       .click('.rc .r a')
   } catch(e) {
     console.error(e);
     return undefined;
   }
+
   try {
     const table = await nightmare
       .wait('#example')
       .evaluate(() => {
         return [...document.querySelectorAll('#example')[0].children[1].children]
-          .map(el => el.innerText)
+          .map(el => {
+            return {
+              name: el.children[0].innerText,
+              position: el.children[1].innerText,
+              office: el.children[2].innerText,
+              age: el.children[3].innerText,
+              startDate: el.children[4].innerText
+            }
+          })
       })
       .end();
   
   console.log(table);
-  return { ...table };
+  return [...table];
   } catch(e) {
     console.error(e);
     return undefined;
@@ -43,5 +57,8 @@ const getData = async myInput => {
 }
 
 getData(mySearch[0])
-  .then(data => console.log("This is my data", data))
+  .then(data => {
+    const csvData = csvFormat(data.filter(i => i));
+    writeFileSync('./output.csv', csvData, { encoding: 'utf8' });
+  })
   .catch(e => console.error(e));
