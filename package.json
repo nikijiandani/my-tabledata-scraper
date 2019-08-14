@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nikijiandani/my-datatable-scraper.git"
+    "url": "git+https://github.com/nikijiandani/my-tabledata-scraper.git"
   },
   "author": "Niki Jiandani",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nikijiandani/my-datatable-scraper/issues"
+    "url": "https://github.com/nikijiandani/my-tabledata-scraper/issues"
   },
-  "homepage": "https://github.com/nikijiandani/my-datatable-scraper#readme",
+  "homepage": "https://github.com/nikijiandani/my-tabledata-scraper#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "d3-dsv": "^1.1.1",
