@@ -13,7 +13,7 @@ This webscraper was built using Nightmare as a code challenge and it peforms the
 
 ## Expected Usage
 
-This program sgould be executed from the command line, in the following manner:
+This program should be executed from the command line, in the following manner:
 
 `node dataScraper.js`
 
